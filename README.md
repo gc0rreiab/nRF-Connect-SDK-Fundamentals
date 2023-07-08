@@ -5,7 +5,7 @@ Nordic Semiconductor has deprecated the old nRF5 SDK and now all the new feature
 - [nRF Connect SDK v2.4.0](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.0/nrf/index.html)
 - [nRF52840 DK](https://www.nordicsemi.com/Products/Development-hardware/nrf52840-dk) (64MHz ARM Cortex-M4F based SoC)
 
-# Built and flash Instructions
+# Build and flash Instructions
 
 
 # More info:
