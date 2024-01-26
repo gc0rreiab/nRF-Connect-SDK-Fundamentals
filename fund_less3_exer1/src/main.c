@@ -1,1 +1,10 @@
-// Code here
+void main(){
+	
+	while(1){
+
+	}
+
+}
+
+
+

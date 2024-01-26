@@ -60,4 +60,4 @@ void main(void)
 	while (1) {
                 k_msleep(SLEEP_TIME_MS); 
 	}
-}
+} 
