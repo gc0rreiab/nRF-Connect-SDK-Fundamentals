@@ -1,7 +1,7 @@
 # FUND_LESS3_EXER1: 
 
 ## Prepare the CMake project file
-The file CMakeLists.txt is the main CMake project file and the source of this build process configuration:
+The file CMakeLists.txt is the main CMake project file and the source of the build process configuration:
 
     cmake_minimum_required(VERSION 3.20.0)
     find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
@@ -22,3 +22,4 @@ The file CMakeLists.txt is the main CMake project file and the source of this bu
 2. Add build configuration and choose the correct board to make sure the correct device-tree files are used.
 3. Connect your board and flash the application.
  
+C
