@@ -22,7 +22,7 @@ You have to use nRF Connect for VS Code extension or to use the west tool, which
         west build --build-dir <custom_build_directory> -b <board_name> <path_to_your_project>
 
    - **build-dir** flag: to specify a custom build directory. If you don't which to specify a custom build directory for the build output you can ommit this flag.
-   - **b** flag: to specify board you are using. In this course I used nRF52840DK so replace <board_name> with nrf52_pca10056. Your can find more details about board names [here](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.0/nrf/app_dev/board_support/index.html#gs-programming-board-names).
+   - **b** flag: to specify board you are using. In this course I used nRF52840DK so replace <board_name> with nrf52840dk_nrf52840. Your can find more details about board names [here](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.0/nrf/app_dev/board_support/index.html#gs-programming-board-names).
 
 3. Flash your application using the following command:
         
