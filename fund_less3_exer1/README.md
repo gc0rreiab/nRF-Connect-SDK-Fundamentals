@@ -21,5 +21,3 @@ The file CMakeLists.txt is the main CMake project file and the source of the bui
 1. Add this as an existing application in nRF Connect for VS Code extension.
 2. Add build configuration and choose the correct board to make sure the correct device-tree files are used.
 3. Connect your board and flash the application.
- 
-C
