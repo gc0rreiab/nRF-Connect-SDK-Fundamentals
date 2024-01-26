@@ -21,13 +21,16 @@ You have to use nRF Connect for VS Code extension or to use the west tool, which
 
         west build --build-dir <custom_build_directory> -b <board_name> <path_to_your_project>
 
-   - **build-dir flag**: to specify a custom build directory. If you don't which to specify a custom build directory for the build output you can ommit this flag.
-   - **b flag**: to specify board you are using. In this course I used nRF52840DK so replace <board_name> with nrf52_pca10056. Your can find more details about board names [here](https://infocenter.nordicsemi.com/index.jsp?topic=%2Fug_gsg_ses%2FUG%2Fgsg%2Fchips_and_sds.html).
+   - **build-dir** flag: to specify a custom build directory. If you don't which to specify a custom build directory for the build output you can ommit this flag.
+   - **b** flag: to specify board you are using. In this course I used nRF52840DK so replace <board_name> with nrf52_pca10056. Your can find more details about board names [here](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.0/nrf/app_dev/board_support/index.html#gs-programming-board-names).
 
 3. Flash your application using the following command:
         
-        west flash -d <build-path> 
+        west flash -d <build-path> --erase
+
+    - **erase** flag: this command clears the full flash memory before programming. To erase only the areas of flash memory that are required for programming the new application you have to ommit this flag. With such approach, the old data in other areas will be retained.
 
 ## More info:
 - [nRF Connect SDK Documentation](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/latest/nrf/index.html)
 - [Zephyr RTOS Documentation](https://docs.zephyrproject.org/latest/)
+- [Build and Flash an application on the command line](https://developer.nordicsemi.com/nRF_Connect_SDK/doc/2.4.0/nrf/getting_started/programming.html)
