@@ -4,7 +4,7 @@
 #include "myfunction.h"
 #endif
 
-int main(void)
+void main(void)
 {
 	while(1){
 		#ifdef CONFIG_MYFUNCTION
@@ -12,6 +12,7 @@ int main(void)
 		printk("The sum of %d and %d is %d\n\r", a, b, sum(a,b));
 		#else
 		printk("MYFUNCTION not enabled\r\n");
+		return;
 		#endif
 		k_msleep(1000);
 	}
