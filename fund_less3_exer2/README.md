@@ -1,20 +1,30 @@
-# FUND_LESS3_EXER1: 
+# FUND_LESS3_EXER2: 
 
-## Prepare the CMake project file
-The file CMakeLists.txt is the main CMake project file and the source of the build process configuration:
+## Customizing an application using CMakeList.txt, kconfig and proj.conf files
+The reason for this is to limit the size of your application. Modules and subsystems are only included in the build when you enable the relevant configuration, allowing you to keep the application as small as you wish. 
+
+In this exercise we will customize the build process using CMakeList.txt, kconfig and proj.conf files. 
 
     cmake_minimum_required(VERSION 3.20.0)
     find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
     project(hello_world)
     target_sources(app PRIVATE src/main.c)
+    target_sources_ifdef(CONFIG_MYFUNCTION app PRIVATE src/myfunction.c)
 
-- **cmake_minimum_required**: command is used to ensures the build fails if the CMake version is too old.
--  **find_package** command is used to find and load settings for an external package.
-    - Zephyr: This is the name of the package being searched for, in this case, the Zephyr RTOS.
-    - REQUIRED: This keyword indicates that the package must be found. If the package is not found, it will result in an build error.
-    - HINTS $ENV{ZEPHYR_BASE}: The HINTS option is used to provide additional search paths or hints to help CMake locate the package. This part provides a hint to CMake about where it should look for the Zephyr package. $ENV{ZEPHYR_BASE} is an environment variable that specifies the base directory of the Zephyr installation. 
-- **project**: command to set the name of the project.
-- **target_sources**: command to add the source file to the project.
+- **target_sources_ifdef**: command to add the custom file myfunction.c to the project if **CONFIG_MYFUNCTION** is enabled:
+
+The CONFIG_MYFUNCTION variable is defined in the kconfig file:
+
+    source "Kconfig.zephyr"
+
+    config MYFUNCTION
+        bool "Enable my function"
+        default n
+
+and then the CONFIG_MYFUNCTION variable can be enabled/disabled using the proj.conf file:
+
+    CONFIG_MYFUNCTION=y
+
 
 
 ## Build and flash Instructions
