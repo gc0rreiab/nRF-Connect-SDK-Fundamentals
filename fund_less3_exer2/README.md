@@ -34,6 +34,8 @@ In the exercise, only the baud rate of the uart0 instance, which is used as the 
         current-speed = < 9600 >;
     };
 
+NOTE: 
+The nRF Connect for VS Code extension provides a visual way to view and change DeviceTree files, which can be easier than changing the device tree files themselves. More information can be found at [How to work with DeviceTree Visual Editor](https://nrfconnect.github.io/vscode-nrf-connect/guides/work_with_devicetree_editor.html?h=devicetree+visual#).
 
 
 ## Build and flash Instructions
