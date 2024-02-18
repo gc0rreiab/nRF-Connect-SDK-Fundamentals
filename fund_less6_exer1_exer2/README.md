@@ -1,4 +1,4 @@
-# FUND_LESS6_EXER1: 
+# FUND_LESS6_EXER: 
 
 ## Hardware/Sensors used
 Lessons 6 about **I2C peripheral drivers** were done using different sensors than described in the the course. I've used I2C sensors I have with me during the time I've performing this course.
