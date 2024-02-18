@@ -83,7 +83,7 @@ int main(void)
         uint16_t tempRaw = 0;
         float temp;
         temp = -46.85 + (175.72 * tempRaw / 65536.0);
-        printk("Temp = %f ºC\r\n", temp);
+        printk("Temp = .2f ºC\r\n", temp);
 
         // Delay the loop to perform one temperature reading each second
         k_sleep(K_MSEC(1000));
