@@ -1,11 +1,11 @@
 # FUND_LESS6_EXER1: 
 
 ## Hardware/Sensors used
-These lessons about **I2C peripheral drivers** were done using different sensors than described in the the course. I've used I2C sensors I have with me during the time I've performing this course.
+Lessons 6 about **I2C peripheral drivers** were done using different sensors than described in the the course. I've used I2C sensors I have with me during the time I've performing this course.
 
 - **Exercise 1: Sensirion SHT25 sensor**
  
-   I've implemented a raw communication based on the [sensor datasheet](https://www.sensirion.com/products/catalog/SHT25/). Several MACROS with sensor register addresses were defined and then using Zephyr I2C API functions such as i2c_write_dt() and i2c_write_read_dt() the I2C communication was established with the sensor.
+   I've implemented a raw communication based on the [sensor datasheet](https://www.sensirion.com/products/catalog/SHT25/). Several MACROS with sensor register addresses were defined and then using Zephyr I2C API functions such as i2c_write_dt(), i2c_read_dt() and i2c_write_read_dt() the I2C communication was established with the sensor.
 
 - **Exercise 2: Bosch BNO055 IMU sensor:**
  
