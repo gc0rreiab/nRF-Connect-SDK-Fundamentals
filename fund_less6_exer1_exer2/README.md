@@ -23,11 +23,32 @@ Besided the following instructions:
     project(i2c_exercise)
     target_sources(app PRIVATE src/main.c)
 
-In exercise 2, add the **ExternalProject_Add** command to download and build the sensor library during the build process from Bosch BNO055 driver github page. This ensures that the project will track the sensor driver repository. Note that the **ExternalProject_Add** command will only be executed if the variable **CONFIG_BNO055_SENSOR** is defined in the Kconfig file.
+In exercise 2, add the following commands to download and build the sensor library during the build process from Bosch BNO055 driver github page. This ensures that the project will "track" the sensor driver repository by downloading the latest source files located in the specified git tag.
 
-    target_sources_ifdef(CONFIG_BNO055_SENSOR app PRIVATE src/bno055.c)
+    include(ExternalProject)
 
-This build-process was set up for learning purposes. A simple way to use the Bosch BNO055 driver would be to download the bno055.c and bno055.h files and place them in the exercise directory. However, this way, if any update or bug fix is ​​made to the BNO055 sensor repository, the exercise will not be configured to track it.
+    #Set the directory where the external project will be downloaded and built
+    set(EXTERNAL_INSTALL_LOCATION ${CMAKE_BINARY_DIR}/external)
+
+    #Define the ExternalProject for BN055 driver
+    ExternalProject_Add(
+        BNO055_driver
+        PREFIX ${EXTERNAL_INSTALL_LOCATION}/BNO055_driver
+        GIT_REPOSITORY https://github.com/boschsensortec/BNO055_driver.git
+        GIT_TAG master # or specify a specific tag or commit
+        UPDATE_COMMAND ""
+        CONFIGURE_COMMAND ""
+        BUILD_COMMAND ""
+        INSTALL_COMMAND ""
+    )
+
+    # Add the root directory of the BNO055 driver to the include directories
+    ExternalProject_Get_Property(BNO055_driver source_dir)
+    include_directories(${source_dir})
+    # Optionally, you can add a dependency on BNO055_driver to ensure that 'BNO055_driver' is built before the project target 'app'
+    add_dependencies(app BNO055_driver)
+
+This build-process was set up for learning purposes. A simple way to use the Bosch BNO055 driver would be to download the bno055.c and bno055.h files and place them in the project directory. However, in this case, if any update or bug-fix is ​​made to the BNO055 sensor repository, the exercise will not be configured to "track" it.
 
 ## Build and flash Instructions
 1. Add this as an existing application in nRF Connect for VS Code extension.
