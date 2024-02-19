@@ -1,8 +1,8 @@
 &i2c0 {
-    bno055: bno055@68 {
+    bno055: bno055@28 {
         compatible = "i2c-device";
         status = "okay";
         label = "BNO055";
-        reg = <0x68>;
+        reg = <0x28>;
     };
 };

@@ -12,10 +12,10 @@ void BNO055_delay_msek(uint32_t msek);
 int8_t I2C_routine(void);
 
 // Declaration of bno055 object
-struct bno055_t bno055;
+struct bno055_t my_bno055;
 
 // Define a macro to fetch the node identifier symbol for I2C0 based on its label
-#define I2C0_NODE DT_NODELABEL(sht25)
+#define I2C0_NODE DT_NODELABEL(bno055)
 
 // Get the device pointer for the I2C0 bus
 static const struct i2c_dt_spec dev_i2c0 = I2C_DT_SPEC_GET(I2C0_NODE);
@@ -32,7 +32,7 @@ int main(void)
     }
 
     err = I2C_routine();
-    err = bno055_init(&bno055);
+    err = bno055_init(&my_bno055);
 
     while (1)
     {
@@ -45,10 +45,10 @@ int main(void)
 // Integrate BNO055 API with Zephyr I2C write() and read() functions
 int8_t I2C_routine(void)
 {
-    bno055.bus_write = BNO055_I2C_bus_write;
-    bno055.bus_read = BNO055_I2C_bus_read;
-    bno055.delay_msec = BNO055_delay_msek;
-    bno055.dev_addr = BNO055_I2C_ADDR1;
+    my_bno055.bus_write = BNO055_I2C_bus_write;
+    my_bno055.bus_read = BNO055_I2C_bus_read;
+    my_bno055.delay_msec = BNO055_delay_msek;
+    my_bno055.dev_addr = BNO055_I2C_ADDR1;
 
     return BNO055_INIT_VALUE;
 }
