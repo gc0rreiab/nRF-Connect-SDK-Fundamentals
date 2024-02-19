@@ -23,8 +23,6 @@ Besided the following instructions:
     project(i2c_exercise)
     target_sources(app PRIVATE src/main.c)
 
-On exercise 2 add the **ExternalProject_Add** command to download and build the sensor library during the build process from their own github page. This ensure the project will track the sensor driver repository. Note that ExternalProject_Add command only will be performed if the variable **CONFIG_BNO055_SENSOR** is set in Kconfig file.
-
 In exercise 2, add the **ExternalProject_Add** command to download and build the sensor library during the build process from Bosch BNO055 driver github page. This ensures that the project will track the sensor driver repository. Note that the **ExternalProject_Add** command will only be executed if the variable **CONFIG_BNO055_SENSOR** is defined in the Kconfig file.
 
     target_sources_ifdef(CONFIG_BNO055_SENSOR app PRIVATE src/bno055.c)
