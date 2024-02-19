@@ -20,12 +20,16 @@ Besided the following instructions:
 
     cmake_minimum_required(VERSION 3.20.0)
     find_package(Zephyr REQUIRED HINTS $ENV{ZEPHYR_BASE})
-    project(i2c_exercise1)
+    project(i2c_exercise)
     target_sources(app PRIVATE src/main.c)
 
-On exercise 2, also add the following instruction to make sure to add the sensor C driver to the build process if the variable **CONFIG_BNO055_SENSOR** is set in Kconfig file:
+On exercise 2 add the **ExternalProject_Add** command to download and build the sensor library during the build process from their own github page. This ensure the project will track the sensor driver repository. Note that ExternalProject_Add command only will be performed if the variable **CONFIG_BNO055_SENSOR** is set in Kconfig file.
+
+In exercise 2, add the **ExternalProject_Add** command to download and build the sensor library during the build process from Bosch BNO055 driver github page. This ensures that the project will track the sensor driver repository. Note that the **ExternalProject_Add** command will only be executed if the variable **CONFIG_BNO055_SENSOR** is defined in the Kconfig file.
 
     target_sources_ifdef(CONFIG_BNO055_SENSOR app PRIVATE src/bno055.c)
+
+This build-process was set up for learning purposes. A simple way to use the Bosch BNO055 driver would be to download the bno055.c and bno055.h files and place them in the exercise directory. However, this way, if any update or bug fix is ​​made to the BNO055 sensor repository, the exercise will not be configured to track it.
 
 ## Build and flash Instructions
 1. Add this as an existing application in nRF Connect for VS Code extension.
