@@ -7,6 +7,9 @@
 #include <zephyr/kernel.h>
 #include <zephyr/sys/printk.h>
 
+// Macro to build the exercise with k_yield() or with k_msleep()
+// #define YIELD_EXAMPLE
+
 /* Define stack size and scheduling priority used by each thread */
 #define STACKSIZE 1024 // 1KB stack size
 #define THREAD0_PRIORITY 7
@@ -17,10 +20,13 @@ void thread0(void)
     while (1)
     {
         printk("Hello, I am thread0\n");
+#ifdef YIELD_EXAMPLE
         /* Make the thread yield */
         k_yield();
-        /* STEP 10 - Put the thread to sleep */
-        /* Remember to comment out the line from STEP 6 */
+#else
+        /* Put the thread to sleep */
+        k_msleep(5);
+#endif
     }
 }
 
@@ -29,10 +35,13 @@ void thread1(void)
     while (1)
     {
         printk("Hello, I am thread1\n");
+#ifdef YIELD_EXAMPLE
         /* Make the thread yield */
         k_yield();
-        /* STEP 10 - Put the thread to sleep */
-        /* Remember to comment out the line from STEP 8 */
+#else
+        /* Put the thread to sleep */
+        k_msleep(5);
+#endif
     }
 }
 
