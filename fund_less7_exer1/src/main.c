@@ -5,7 +5,6 @@
  */
 
 #include <zephyr/kernel.h>
-#include <zephyr/device.h>
 #include <zephyr/sys/printk.h>
 
 /* Define stack size and scheduling priority used by each thread */
@@ -42,3 +41,7 @@ K_THREAD_DEFINE(thread0_id, STACKSIZE, thread0, NULL, NULL, NULL,
                 THREAD0_PRIORITY, 0, 0);
 K_THREAD_DEFINE(thread1_id, STACKSIZE, thread1, NULL, NULL, NULL,
                 THREAD1_PRIORITY, 0, 0);
+
+int main(void)
+{
+}
