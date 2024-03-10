@@ -32,23 +32,39 @@ static inline void emulate_work()
                 ;
 }
 
-/* STEP 7 - Create work_info structure and offload function */
+/* work_info structure and offload function */
+struct work_info
+{
+        struct k_work work;
+        char name[25];
+} my_work;
+
+void offload_function(struct k_work *work_tem)
+{
+        emulate_work();
+}
 
 /* entry function for thread0 */
 void thread0(void)
 {
         uint64_t time_stamp;
         int64_t delta_time;
-        /* STEP 8 - Start the workqueue, */
+
+        /* Start the workqueue, */
+        k_work_queue_start(&offload_work_q, my_stack_area,
+                           K_THREAD_STACK_SIZEOF(my_stack_area), WORKQ_PRIORITY,
+                           NULL);
         /* initialize the work item and connect it to its handler function */
+        strcpy(my_work.name, "Thread0 emulate_work()");
+        k_work_init(&my_work.work, offload_function);
 
         while (1)
         {
                 // capture the timestamp
                 time_stamp = k_uptime_get();
-                /* STEP 9 - Submit the work item to the workqueue instead of calling emulate_work() directly */
-                /* Remember to comment out emulate_work(); */
-                emulate_work();
+                /* Submit the work item to the workqueue instead of calling emulate_work() directly */
+                k_work_submit_to_queue(&offload_work_q, &my_work.work);
+                // emulate_work();
                 delta_time = k_uptime_delta(&time_stamp);
                 printk("thread0 yielding this round in %lld ms\n", delta_time);
                 k_msleep(20);
