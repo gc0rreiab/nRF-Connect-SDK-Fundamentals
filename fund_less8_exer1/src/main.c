@@ -12,6 +12,9 @@
 #define PRODUCER_STACKSIZE 512
 #define CONSUMER_STACKSIZE 512
 
+/* defining the semaphore */
+K_SEM_DEFINE(instance_monitor_sem, 10, 10);
+
 /* Set the priority of the producer and consumer thread */
 #define PRODUCER_PRIORITY 5
 #define CONSUMER_PRIORITY 4
@@ -23,8 +26,8 @@ volatile uint32_t available_instance_count = 10;
 // Function which emulates getting access of resource
 void get_access(void)
 {
-        /* STEP 10.1 - Get semaphore before access to the resource */
-
+        /* Get semaphore before access to the resource */
+        k_sem_take(&instance_monitor_sem, K_FOREVER);
         /* Decrement available resource */
         available_instance_count--;
         printk("Resource taken and available_instance_count = %d\n", available_instance_count);
@@ -36,7 +39,8 @@ void release_access(void)
         /* Increment available resource */
         available_instance_count++;
         printk("Resource given and available_instance_count = %d\n", available_instance_count);
-        /* STEP 10.2 - Give semaphore after finishing access to resource */
+        /* Give semaphore after finishing access to resource */
+        k_sem_give(&instance_monitor_sem);
 }
 
 /* STEP 4 - Producer thread relinquishing access to instance */
