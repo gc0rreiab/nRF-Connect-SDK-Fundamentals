@@ -1,4 +1,4 @@
-# nRF-Connect-SDK-Fundamentals
+# nRFConnectSDK-ZephyrRTOS-Fundamentals
 Nordic Semiconductor has deprecated the old nRF5 SDK and now all the new features are developed for their new SDK called nRF Connect which is based on [Zephyr RTOS](https://github.com/zephyrproject-rtos/zephyr): an open-source real-time operating system for connected and resource-constrained embedded devices. This repository is for my hands-on during the nRF Connect SDK Fundamentals course, which can be found [here](https://academy.nordicsemi.com/courses/nrf-connect-sdk-fundamentals/).
 
 ## SDK version and hardware used during the course 
