@@ -19,13 +19,13 @@
 #define COMBINED_TOTAL 40
 int32_t increment_count = 0;
 int32_t decrement_count = COMBINED_TOTAL;
-/* STEP 11 - Define mutex to protect access to shared code section */
-
+/* Define mutex to protect access to shared code section */
+K_MUTEX_DEFINE(test_mutex);
 // Shared code run by both threads
 void shared_code_section(void)
 {
-        /* STEP 12.1 - Lock the mutex */
-
+        /* Lock the mutex */
+        k_mutex_lock(&test_mutex, K_FOREVER);
         /* Increment count and decrement count changed */
         /* according to logic defined in exercise text */
         increment_count += 1;
@@ -35,8 +35,8 @@ void shared_code_section(void)
         {
                 decrement_count = COMBINED_TOTAL;
         }
-        /* STEP 12.2 - Unlock the mutex */
-
+        /* Unlock the mutex */
+        k_mutex_unlock(&test_mutex);
         /* Print counter values if they do not add up to COMBINED_TOTAL */
         if (increment_count + decrement_count != COMBINED_TOTAL)
         {
